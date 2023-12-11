@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        /* CSS */
+        /* Add your CSS styles here */
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+header {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+}
+
+nav {
+    background-color: #343a40;
+    padding: 10px;
+    display: flex;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+section {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+form input,
+form select,
+form button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #343a40;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+#statsResult {
+    margin-top: 20px;
+    border-top: 1px solid #dee2e6;
+    padding-top: 20px;
+}
+
+footer {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="Nguoidung.htm">Người Dùng</a>
+        <a href="SanPham.htm">Sản Phẩm</a>
+        <a href="ThongKe.htm">Thống kê</a>
+        <a href="Donhang.htm">Đơn Hàng</a>
+    </nav>
+
+    <section id="statistics">
+        <h2>Thống Kê Tình Hình Kinh Doanh</h2>
+
+        <!-- Form thống kê -->
+        <form id="statsForm">
+            <label for="productType">Loại Sản Phẩm:</label>
+            <input type="text" id="productType" name="productType" placeholder="Nhập loại sản phẩm">
+
+            <label for="dateRange">Khoảng Thời Gian:</label>
+            <input type="date" id="startDate" name="startDate">
+            <span>đến</span>
+            <input type="date" id="endDate" name="endDate">
+
+            <button type="button" onclick="generateStats()">Thống Kê</button>
+        </form>
+
+        <!-- Kết quả thống kê -->
+        <div id="statsResult">
+            <!-- Kết quả thống kê sẽ được hiển thị ở đây -->
+        </div>
+    </section>
+ <!-- <footer>
+     <p>&copy; 2023 Trang Thống Kê. All rights reserved.</p>
+    </footer> -->
+    
+
+    <script>
+        function generateStats() {
+            // Lấy thông tin từ form
+            var productType = document.getElementById('productType').value;
+            var startDate = document.getElementById('startDate').value;
+            var endDate = document.getElementById('endDate').value;
+
+            // Thực hiện thống kê (giả sử có một hàm thống kê sẵn)
+            var statsResult = performStats(productType, startDate, endDate);
+
+            // Hiển thị kết quả thống kê
+            displayStats(statsResult);
+        }
+
+        function performStats(productType, startDate, endDate) {
+            // Giả sử có một hàm thống kê trả về kết quả
+            // Thực tế, bạn sẽ gửi request đến server để xử lý và trả về kết quả thống kê
+            // Ở đây, ta giả sử có một hàm giả lập thống kê
+            var statsResult = {
+                totalQuantity: 100, // Số lượng tổng cộng
+                totalPrice: 5000,   // Tổng giá trị
+                averagePrice: 50    // Giá trị trung bình
+            };
+
+            return statsResult;
+        }
+
+        function displayStats(statsResult) {
+            var statsResultDiv = document.getElementById('statsResult');
+            statsResultDiv.innerHTML = `
+                <h3>Kết Quả Thống Kê</h3>
+                <p>Số Lượng Tổng Cộng: ${statsResult.totalQuantity}</p>
+                <p>Tổng Giá Trị: $${statsResult.totalPrice}</p>
+                <p>Giá Trị Trung Bình: $${statsResult.averagePrice}</p>
+            `;
+        }
+    </script>
+</body>
+
+</html>

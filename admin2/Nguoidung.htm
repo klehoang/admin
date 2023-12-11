@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+       
+        nav {
+            background-color: #343a40;
+            padding: 10px;
+            display: flex;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1, h2, h3 {
+            color: #343a40;
+        }
+
+        .user-list {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .user-actions {
+            margin-top: 20px;
+        }
+
+        .user-actions button {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .user-actions button:hover {
+            background-color: #555;
+        }
+
+        .add-user-form {
+            margin-top: 20px;
+        }
+
+        .add-user-form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .add-user-form input,
+        .add-user-form select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        .add-user-form button {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-user-form button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <nav>
+        <nav>
+            <a href="Nguoidung.htm">Người Dùng</a>
+            <a href="SanPham.htm">Sản Phẩm</a>
+            <a href="ThongKe.htm">Thống kê</a>
+            <a href="Donhang.htm">Đơn Hàng</a>
+        </nav>
+    </nav>
+
+    <section>
+        <h2>Danh Sách Người Dùng</h2>
+
+        <div class="user-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên Người Dùng</th>
+                        <th>Email</th>
+                        <th>Quyền Hạn</th>
+                        <th>Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Admin</td>
+                        <td>admin@example.com</td>
+                        <td>Admin</td>
+                        <td>
+                            <div class="user-actions">
+                                <button onclick="editUser(1)">Sửa</button>
+                                <button onclick="deleteUser(1)">Xóa</button>
+                                <button onclick="toggleUserStatus(1)">Khóa</button>
+                            </div>
+                        </td>
+                        <!-- Thêm vào cột Thao Tác -->
+                        <!-- Thêm vào cột Thao Tác -->
+                    </tr>
+                    <!-- Thêm các dòng dữ liệu khác nếu cần -->
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Thêm Người Dùng Mới</h3>
+        <div class="add-user-form">
+            <label for="newUsername">Tên Người Dùng:</label>
+            <input type="text" id="newUsername" name="newUsername" required>
+
+            <label for="newEmail">Email:</label>
+            <input type="email" id="newEmail" name="newEmail" required>
+
+            <label for="newRole">Quyền Hạn:</label>
+            <select id="newRole" name="newRole">
+                <option value="admin">Admin</option>
+                <option value="user">Người Dùng</option>
+            </select>
+
+            <button onclick="addUser()">Thêm Người Dùng</button>
+        </div>
+    </section>
+
+    <script>
+        function editUser(userId) {
+            // Xử lý chức năng sửa người dùng
+            alert('Sửa người dùng có ID: ' + userId);
+        }
+
+        function deleteUser(userId) {
+            // Xử lý chức năng xóa người dùng
+            alert('Xóa người dùng có ID: ' + userId);
+        }
+        function toggleUserStatus(userId) {
+            // Xử lý chức năng khóa/mở khóa người dùng
+            var statusCell = document.querySelector('table tbody tr:nth-child(' + userId + ') td:nth-child(5)');
+            var currentStatus = statusCell.dataset.status || 'active'; // Mặc định trạng thái là active
+
+            if (currentStatus === 'active') {
+                // Nếu là active, chuyển sang blocked
+                statusCell.dataset.status = 'blocked';
+                statusCell.innerHTML = 'Đã Khóa';
+            } else {
+                // Nếu là blocked, chuyển sang active
+                statusCell.dataset.status = 'active';
+                statusCell.innerHTML = 'Hoạt Động';
+               // statusCell.innerHTML += '<div class="user-actions"><button onclick="editUser(' + userId + ')">Sửa</button>';
+               // statusCell.innerHTML += '<button onclick="deleteUser(' + userId + ')">Xóa</button>';
+               // statusCell.innerHTML += '<button onclick="toggleUserStatus(' + userId + ')">Khóa</button></div>';
+            }
+        }
+
+        function addUser() {
+            // Xử lý chức năng thêm người dùng
+            var newUsername = document.getElementById('newUsername').value;
+            var newEmail = document.getElementById('newEmail').value;
+            var newRole = document.getElementById('newRole').value;
+
+            // Thêm dữ liệu vào bảng
+            var table = document.querySelector('table tbody');
+            var newRow = table.insertRow(table.rows.length);
+
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+
+            cell1.innerHTML = table.rows.length;
+            cell2.innerHTML = newUsername;
+            cell3.innerHTML = newEmail;
+            cell4.innerHTML = newRole;
+
+            var actions = '<div class="user-actions"><button onclick="editUser(' + table.rows.length + ')">Sửa</button>';
+            actions += '<button onclick="deleteUser(' + table.rows.length + ')">Xóa</button>'
+            actions += '<button onclick="toggleUserStatus(' + table.rows.length + ')">Khóa</button></div>';
+            cell5.innerHTML = actions;
+    
+            // Xóa nội dung trong ô nhập liệu
+            document.getElementById('newUsername').value = '';
+            document.getElementById('newEmail').value = '';
+            document.getElementById('newRole').value = 'admin';
+        }
+    
+    </script>
+</body>
+
+</html>
